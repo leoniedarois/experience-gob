@@ -4,9 +4,3 @@
 - webpack
 - babel
 - prettier
-
-# to do
-
-- eslint
-- flowjs / typescript
-- stylus

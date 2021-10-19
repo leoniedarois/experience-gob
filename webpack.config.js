@@ -25,6 +25,10 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
   plugins: [
@@ -37,7 +41,7 @@ module.exports = {
         {
           from: 'src/assets/',
           to: path.resolve(__dirname, 'dist', 'assets'),
-        },
+        }
       ],
     }),
   ],
