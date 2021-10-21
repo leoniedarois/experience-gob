@@ -26,3 +26,9 @@ button.addEventListener('click', () => {
   popin.classList.add('hide')
   screenButton.classList.remove('hide')
 })
+
+screenButton.addEventListener('click', () => {
+  console.log('hoho')
+  const screenUrl = canvas.toDataURL('png')
+  console.log(screenUrl)
+})
