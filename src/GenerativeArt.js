@@ -2,12 +2,12 @@ import './styles/styles.css'
 import * as dat from 'dat.gui'
 
 const gui = new dat.GUI()
+gui.close()
 
+const mouse = {x: 0, y: 0}
 const audioContext = new AudioContext()
 const analyzer = audioContext.createAnalyser()
 analyzer.fftSize = 1024
-
-const mouse = {x: 0, y: 0}
 
 class GenerativeArt {
   #ctx
@@ -24,7 +24,6 @@ class GenerativeArt {
     this.zoomY = 0.01
     this.lineLength = 150
     this.gradient = null
-
     this.averageActivity = 0
   }
 
@@ -80,7 +79,6 @@ class GenerativeArt {
         const getSpectrum = () => {
           const frequencyCount = analyzer.frequencyBinCount
           const timeData = new Uint8Array(frequencyCount)
-
           analyzer.getByteFrequencyData(timeData)
 
           let sum = 0;
@@ -89,8 +87,7 @@ class GenerativeArt {
           }
 
           this.averageActivity = sum / timeData.length
-
-          this.generate(0)
+          this.generateLines(0)
 
           requestAnimationFrame(getSpectrum.bind(this))
         }
@@ -99,10 +96,10 @@ class GenerativeArt {
       })
   }
 
-  generate() {
+  generateLines() {
     this.#ctx.clearRect(0, 0, this.#width, this.#height)
     this.radius += this.vr
-    // pour que l'animation boucle
+
     if (this.radius > 15 || this.radius < -15) this.vr *= -1
 
     for (let y = 0; y < this.#height; y += this.cellSize) {
@@ -118,12 +115,12 @@ class GenerativeArt {
     this.#height = canvas.height
     this.#ctx = canvas.getContext('2d')
     this.createGradient()
-    this.gui()
   }
 
   onClick() {
     audioContext.resume().then(() => {
       this.getAudio()
+      this.gui()
     })
   }
 }

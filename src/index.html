@@ -3,9 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <title>Lio's experience</title>
-  </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Tourney:wght@100;300;400;900&display=swap" rel="stylesheet">  </head>
   <body>
-    <button class="button" id="buttonId">Start to listen</button>
+    <div id="popinId" class="popin">
+      <h1>Sound <span>visualizer</span></h1>
+      <p>To get started Chrome needs to use your device's microphone.</p>
+      <button class="button" id="buttonId">Got it !</button>
+    </div>
+    <button id="screenButtonId" class="hide button screenButton">Screen it !</button>
     <canvas id="canvas"></canvas>
     <script src="bundle.js" charset="utf-8"></script>
   </body>
