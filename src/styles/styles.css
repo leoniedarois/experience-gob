@@ -62,3 +62,13 @@ canvas {
   right: 30px;
   z-index: 120;
 }
+
+/* Mobile styles */
+@media screen and (max-width: 740px) {
+  .button {
+    font-size: 25px;
+  }
+  .popin {
+    width: 70% !important;
+  }
+}
