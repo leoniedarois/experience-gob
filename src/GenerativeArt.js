@@ -4,7 +4,6 @@ import * as dat from 'dat.gui'
 const gui = new dat.GUI()
 gui.close()
 
-const mouse = {x: 0, y: 0}
 const audioContext = new AudioContext()
 const analyzer = audioContext.createAnalyser()
 analyzer.fftSize = 1024
@@ -46,21 +45,8 @@ class GenerativeArt {
   }
 
   drawLine = (angle, x, y) => {
-    let positionX = 10
-    let positionY = 10
-    let dx = mouse.x - positionX
-    let dy = mouse.y - positionY
-    let distance = dx * dy + dy * dy
-
     if (this.averageActivity > 0) {
-      // if (distance > 100000) distance = 50000
-      //else if (distance < 50000) distance = 50000
-      // let length = distance / 3000
       let length = Math.max(0, this.averageActivity)
-      // console.log({length, averageActivity: this.averageActivity})
-      // console.log(this)
-      //let length = minDbg
-      // console.log('from drawline', minDbg)
 
       this.#ctx.beginPath()
       this.#ctx.moveTo(x, y)
@@ -75,7 +61,6 @@ class GenerativeArt {
       .then(s => {
         const micro = audioContext.createMediaStreamSource(s)
         micro.connect(analyzer)
-
         const getSpectrum = () => {
           const frequencyCount = analyzer.frequencyBinCount
           const timeData = new Uint8Array(frequencyCount)
@@ -91,7 +76,6 @@ class GenerativeArt {
 
           requestAnimationFrame(getSpectrum.bind(this))
         }
-
         getSpectrum()
       })
   }

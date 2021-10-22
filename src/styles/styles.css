@@ -64,7 +64,7 @@ canvas {
 }
 
 /* Mobile styles */
-@media screen and (max-width: 740px) {
+@media (max-width: 768px) {
   .button {
     font-size: 25px;
   }

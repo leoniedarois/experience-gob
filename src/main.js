@@ -1,5 +1,6 @@
 import './styles/styles.css'
 import GenerativeArt from './GenerativeArt'
+import 'regenerator-runtime/runtime'
 
 const button = document.getElementById('buttonId')
 const screenButton = document.getElementById('screenButtonId')
@@ -28,7 +29,17 @@ button.addEventListener('click', () => {
 })
 
 screenButton.addEventListener('click', () => {
-  console.log('hoho')
-  const screenUrl = canvas.toDataURL('png')
-  console.log(screenUrl)
+
+    (async () => {
+      const screenUrl = canvas.toDataURL()
+      console.log(screenUrl)
+      await fetch('http://localhost:3000/canvas', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({screenshot: `Success, you have screen your experience at ${new Date()}`})
+      })
+    })()
 })

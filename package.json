@@ -24,6 +24,7 @@
     "webpack-dev-server": "^4.3.1"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dat.gui": "^0.7.7",
     "p5": "^1.4.0",
     "regenerator-runtime": "^0.13.9"
